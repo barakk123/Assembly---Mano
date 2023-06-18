@@ -1,0 +1,1068 @@
+		BSA	PutS		// Prints the (not so short) output that explains what user input is required.
+Main,		LDA	NewLine		// print("\n");
+		BSA	PutC
+		BSA	Op		// Prints "Op:"
+		CLA			// 
+		STA	Rem		// Rem=0;
+		STA	count		// count=0;
+		STA	FlagMY		// FlagMY=0;
+		STA	FlagMX		// FlagMX=0;
+		STA	FlagM		// FlagM=0;
+		STA	FLAG
+		STA	Sflag
+		STA	Eflag		// Eflag=0;
+		LDA	Minus1		// 
+		STA	F_CHECK		// F_CHECK=-1;
+		STA	F_CHECKRem	// F_CHECKRem=-1;
+		BSA	GetC		// scanf(OpChoose);				// User choose operation
+		CMA			//
+		INC			//
+		STA	OpChoose	// while(OpChoose!=X)
+		ADD	Exit		// {
+		SZA			// 	callfunc(WhatDWC);
+		BUN	LetsGo		// }
+		BUN	Cya		// else
+LetsGo,		BSA	WhatDWC		// {
+					//	return 0;
+		BUN	Main		// }
+Cya,		BSA	Bye		// ptrinf("Bye");
+		HLT
+		
+
+
+
+// Data:
+//------
+
+
+X,		DEC	0
+Y,		DEC	0
+Res,		DEC	0
+Digit,		DEC	0
+Divisor, 	DEC	0
+mDivisor, 	DEC 	0
+counter, 	DEC 	0 
+It_count, 	DEC 	4
+Minus1, 	DEC 	-1
+Number,		DEC	0
+sPtr,		DEC	-1
+mY,		DEC	0
+Resu,		DEC	0
+count,		DEC	0
+Rem,		DEC	0
+FlagMY,		DEC	0
+FlagMX,		DEC	0
+FlagM,		DEC	0
+Eflag,		DEC	0
+PrevNumb,	DEC	0
+Sflag,		DEC	0
+Numb,		DEC	0
+Dcount,		DEC	0
+Charint8,	DEC	8
+
+
+
+MBS,		HEX	-8
+Exit,		HEX	58
+Plus,		HEX	2B
+Minus,		HEX	2D
+Mult,		HEX	2A
+Divi,		HEX	2F
+Equal,		HEX	3D
+Char:,		HEX	3A
+CharOO,		HEX	4F
+CharP,		HEX	70
+Char1,		HEX	31
+Chars,		HEX	73
+Chart,		HEX	74
+Char2,		HEX	32
+Charn,		HEX	6E
+Chard,		HEX	64
+CharE,		HEX	45
+Charr,		HEX	72
+Charo,		HEX	6F
+Char(,		HEX	28
+Char),		HEX	29
+Chari,		HEX	69
+Charv,		HEX	76
+Charb,		HEX	62
+CharBB,		HEX	42
+Chary,		HEX	79
+Charl,		HEX	6C
+Charpp,		HEX	70
+Charee,		HEX	65
+Charaa,		HEX	61
+Charu,		HEX	75
+Charm,		HEX	6D
+Charg,		HEX	67
+CharSpace,	HEX	20
+NewLine,	HEX	A
+
+
+ascii_Offset,	HEX	30
+Mbiggerange,	HEX	-39
+checkM,		HEX	-30
+MinusO,		HEX	-2D
+Ptr, 		HEX 	0
+F_CHECK, 	HEX 	-1
+F_CHECKrem,	HEX	-1
+OpChoose,	HEX	0
+FLAG,		DEC	0
+CC,		HEX	0
+MINUS_CR,	HEX	-0D
+Enter,		HEX	0D
+sTer,		HEX	03
+
+
+// Array of chars for the first big sentence(welcome sentence).
+S_Start,	HEX	200
+		ORG	200
+String,		HEX	49
+		HEX	6E
+		HEX	70
+		HEX	75
+		HEX	74
+		HEX	20
+		HEX	69
+		HEX	73
+		HEX	20
+		HEX	74
+		HEX	65
+		HEX	72
+		HEX	6D
+		HEX	69
+		HEX	6E
+		HEX	61
+		HEX	74
+		HEX	65
+		HEX	64
+		HEX	20
+		HEX	62
+		HEX	79
+		HEX	20
+		HEX	3C
+		HEX	45
+		HEX	6E
+		HEX	74
+		HEX	65
+		HEX	72
+		HEX	20
+		HEX	28
+		HEX	43
+		HEX	52
+		HEX	29
+		HEX	3E
+		HEX	2E
+		HEX	20
+		HEX	54
+		HEX	6F
+		HEX	20
+		HEX	65
+		HEX	78
+		HEX	69
+		HEX	74
+		HEX	20
+		HEX	70
+		HEX	72
+		HEX	6F
+		HEX	67
+		HEX	72
+		HEX	61
+		HEX	6D
+		HEX	20
+		HEX	70
+		HEX	72
+		HEX	65
+		HEX	73
+		HEX	73
+		HEX	20
+		HEX	58
+		HEX	2E
+		HEX	20
+		HEX	46
+		HEX	6F
+		HEX	72
+		HEX	20
+		HEX	4F
+		HEX	70
+		HEX	20
+		HEX	70
+		HEX	72
+		HEX	65
+		HEX	73
+		HEX	73
+		HEX	20
+		HEX	6F
+		HEX	6E
+		HEX	65
+		HEX	20
+		HEX	6F
+		HEX	66
+		HEX	20
+		HEX	74
+		HEX	68
+		HEX	65
+		HEX 	20
+		HEX	66
+		HEX	6F
+		HEX	6C
+		HEX	6C
+		HEX	6F
+		HEX	77
+		HEX	69
+		HEX	6E
+		HEX	67
+		HEX	3A
+		HEX	20
+		HEX	2B
+		HEX	20
+		HEX	2D
+		HEX	20
+		HEX	2A
+		HEX	20
+		HEX	2F
+		HEX	A
+		HEX	03		// '\0'
+
+
+Pow10Ptr, 	HEX	400
+		ORG	400
+Power10Array,	DEC	-10000
+		DEC 	-1000 		
+		DEC 	-100 		
+		DEC 	-10 		
+		DEC 	-1
+
+
+
+
+
+// Functions:
+// ----------
+
+
+// PutC					// Prints a char.
+
+PutC,		HEX	0
+Char_Out,	SKO			// REPEAT
+		BUN 	Char_Out	// UNTIL (FGO == 1)
+		OUT
+		BUN	PutC I
+//__________________________________________________________
+
+
+// GetC					// Get a char from the user.
+
+GetC,		HEX	0
+Char_in,	SKI			// DO REPEAT
+		BUN	Char_In		// UNTIL (FGI == 1) i.e. i/p available at KB
+		INP			// AC = Input from KB
+		BSA	PutC		// To get echo
+		BUN	GetC I
+//__________________________________________________________
+
+
+// putS					// Prints the (not so short) output that explains what user input is required.
+
+putS,		HEX	0
+		LDA	S_Start
+		STA	sPtr		// sPtr = S_Start
+Loop2,		LDA	sTer
+		CMA
+		INC
+		ADD	sPtr I
+		SZA			// While(*sPtr != sTer) --> While(sPtr == sTer) --> While(sPtr - sTer == 0 )
+		BUN	Do2
+		Bun	End2
+Do2,		LDA	sPtr I
+CharOut,	SKO			// While FGO == 1
+		BUN	CharOut
+		OUT
+		ISZ	sPtr		// sPtr++
+		BUN	Loop2
+End2,		BUN	putS I
+//__________________________________________________________
+
+
+// PutE					// Prints "Error Op"
+
+PutE,		HEX	0
+		LDA	NewLine
+		BSA	PutC
+		LDA	CharE
+		BSA	PutC
+		LDA	Charr
+		BSA	PutC
+		LDA	Charr
+		BSA	PutC
+		LDA	Charo
+		BSA	PutC
+		LDA	Charr
+		BSA	PutC
+		LDA	CharSpace
+		BSA	PutC
+		LDA	Charo
+		BSA	PutC	
+		LDA	Charp
+		BSA	PutC
+		BUN	PutE I
+//__________________________________________________________
+
+
+// PutEZ				// Prints "Error div by 0"
+
+PutEZ,		HEX	0
+		LDA	NewLine
+		BSA	PutC
+		LDA	CharE
+		BSA	PutC
+		LDA	Charr
+		BSA	PutC
+		LDA	Charr
+		BSA	PutC
+		LDA	Charo
+		BSA	PutC
+		LDA	Charr
+		BSA	PutC
+		LDA	CharSpace
+		BSA	PutC
+		LDA	Chard
+		BSA	PutC
+		LDA	Chari
+		BSA	PutC
+		LDA	Charv
+		BSA	PutC
+		LDA	CharSpace
+		BSA	PutC
+		LDA	Charb
+		BSA	PutC
+		LDA	Chary
+		BSA	PutC
+		LDA	CharSpace
+		BSA	PutC
+		LDA	ascii_Offset
+		BSA	PutC
+		LDA	NewLine
+		BSA	PutC
+		BUN	PutEZ I
+//__________________________________________________________
+
+
+// PutEC				// Prints "Error - please insert a valid digit"
+
+PutEC,		HEX	0
+		LDA	NewLine
+		BSA	PutC
+		LDA	CharE
+		BSA	PutC
+		LDA	Charr
+		BSA	PutC
+		LDA	Charr
+		BSA	PutC
+		LDA	Charo
+		BSA	PutC
+		LDA	Charr
+		BSA	PutC
+		LDA	CharSpace
+		BSA	PutC
+		LDA	Minus
+		BSA	PutC
+		LDA	CharSpace
+		BSA	PutC
+		LDA	Charpp
+		BSA	PutC
+		LDA	Charl
+		BSA	PutC
+		LDA	Charee
+		BSA	PutC
+		LDA	Charaa
+		BSA	PutC
+		LDA	Chars
+		BSA	PutC
+		LDA	Charee
+		BSA	PutC
+		LDA	CharSpace
+		BSA	PutC
+		LDA	Chari
+		BSA	PutC
+		LDA	Charn
+		BSA	PutC
+		LDA	Chars
+		BSA	PutC
+		LDA	Charee
+		BSA	PutC
+		LDA	Charr
+		BSA	PutC
+		LDA	Chart
+		BSA	PutC
+		LDA	CharSpace
+		BSA	PutC
+		LDA	Charaa
+		BSA	PutC
+		LDA	CharSpace
+		BSA	PutC
+		LDA	Charv
+		BSA	PutC
+		LDA	Charaa
+		BSA	PutC
+		LDA	Charl
+		BSA	PutC
+		LDA	Chari
+		BSA	PutC
+		LDA	Chard
+		BSA	PutC
+		LDA	CharSpace
+		BSA	PutC
+		LDA	Chard
+		BSA	PutC
+		LDA	Chari
+		BSA	PutC
+		LDA	Charg
+		BSA	PutC
+		LDA	Chari
+		BSA	PutC
+		LDA	Chart
+		BSA	PutC
+		LDA	NewLine
+		BSA	PutC
+		BUN	PutEC I	
+//__________________________________________________________
+
+
+// Bye
+
+Bye,		HEX	0
+		LDA	NewLine
+		BSA	PutC
+		LDA	CharBB
+		BSA	PutC
+		LDA	Chary
+		BSA	PutC
+		LDA	Charee
+		BSA	PutC
+		BUN	Bye I
+//__________________________________________________________
+
+
+// Op					// Prints "Op:"
+
+Op,		HEX	0
+		LDA	CharOO
+		BSA	PutC	
+		LDA	Charp
+		BSA	PutC
+		LDA	Char:
+		BSA	PutC
+		BUN 	Op I	
+//__________________________________________________________
+
+
+// 1st					// Prints "1st:"
+
+1st,		HEX	0
+		LDA	NewLine
+		BSA	PutC
+		LDA	Char1
+		BSA	PutC	
+		LDA	Chars
+		BSA	PutC
+		LDA	Chart
+		BSA	PutC
+		LDA	Char:
+		BSA	PutC
+		BUN	1st I
+//__________________________________________________________
+
+
+// 2nd					// Prints "2nd:"
+
+2nd,		HEX	0
+		LDA	Char2
+		BSA	PutC	
+		LDA	Charn
+		BSA	PutC
+		LDA	Chard
+		BSA	PutC
+		LDA	Char:
+		BSA	PutC
+		BUN	2nd I
+//__________________________________________________________
+
+					// We call this function from "Main". This fucntion call WhatDWC - What do we calculate.
+// WhatDWC				// What do we calculate - checks what operation the user chose and calling for the right function to make the right calculate.
+					// It also checks end cases and handles "zero" problems in addition it will detect typos with flags made by "GetSingedShort"
+WhatDWC,	HEX	0
+		LDA	OpChoose							// Not much to explain with comments in this "WhatDWC" function, just follow the pseudo
+		ADD	Plus		// if(OpChoose==Plus)				
+		SZA			// {
+		BUN	ElifMinus	// 	Res = callfunc(PlusOp);
+ThenPlus,	BSA	PlusOp		//	if(Res = 0)&&(Eflag>0) 			// Eflag is explained in "GetX&Y", basicly we want to check if Eflag raised or not, Eflag raises when the user enters invalid digit.
+		LDA	Res		//	{
+		SZA			//		return 1;			
+		BUN	NoZero		//	}	
+		LDA	Eflag		//	if(Res = 0)				// If Eflag raised we already printed the error. we will let the user make new calculation without terminating the all program, just choose an operation again and lets go.
+		SPA			//	{
+		BUN	EPflagok	//		print("=0");
+		BUN	WhatDWC I	//		return 0;
+EPflagok,	LDA	Equal		//	}
+		BSA	PutC		//	if(Res != 0)
+		LDA	ascii_Offset	//	{
+		BSA	PutC		//		callfunc(Result(Res));		// if (Res!=0) we call for "Result" function to print "Res"
+		BUN	WhatDWC	I	//		return 0;
+NoZero,		BSA	Result		//	}
+		BUN	WhatDWC I	// }	
+					 
+ElifMinus,	LDA	OpChoose	// elsif(OpChoose==Minus)			// different/better pseudo
+		ADD	Minus		// {						   -----------------------
+		SZA			//	Res = callfunc(MinusOp);
+		BUN	ElifMult	//	if(Res = 0)
+ThenMinus,	BSA	MinusOp		//	{
+		LDA	Res		//		if(Eflag>0)
+		SZA			//		{
+		BUN	NoZero2		//			return 1;
+		LDA	Eflag		//		}
+		SPA			//		print("=0");
+		BUN	EMiflagok	//		reutrn 0;
+		BUN	WhatDWC I	//	}
+EMiflagok,	LDA	Equal		// 	else return (callfunc(Result(Res)));
+		BSA	PutC		// }
+		LDA	ascii_Offset	//
+		BSA	PutC		//
+		BUN	WhatDWC	I	//	
+NoZero2,	BSA	Result		//
+		BUN	WhatDWC I	//
+					
+ElifMult,	LDA	OpChoose	// elsif(OpChoose==Mult)
+		ADD	Mult		// {
+		SZA			//	Res = callfunc(MultOp);
+		BUN	ElifDivi	//	if(Res = 0)
+ThenMult,	BSA	MultOp		//	{
+		LDA	Res		//		if(Eflag>0)
+		SZA			//		{
+		BUN	NoZero3		//			return 1;
+		LDA	Eflag		//		}
+		SPA			//		print("=0");
+		BUN	EMflagok	//		reutrn 0;
+		BUN	WhatDWC I	//	}
+EMflagok,	LDA	Equal		// 	else return (callfunc(Result(Res)));
+		BSA	PutC		// }
+		LDA	ascii_Offset	//
+		BSA	PutC		//
+		BUN	WhatDWC	I	//
+NoZero3,	LDA	FlagMY		//	else					// This flags will let us know if we should put Minus to the divison result (depends if we divide -X / -Y or X / -Y or -X / Y).
+		CMA			//	{
+		INC			//		if(-FlagMY+FlagMX=0)				
+		ADD	FlagMX		//		{
+		SZA			//			return (callfunc(Result(Res)));
+		BUN	incflagMu	//		}
+		BUN	Go1		//		else
+incflagMu,	LDA	flagM		//		{
+		INC			//			++flagM;
+		STA	flagM		//			return (callfunc(Result(Res)));
+		BUN	Go1		//		}
+					//	}
+Go1,		BSA	Result		// else
+		BUN	WhatDWC I	// {
+
+
+ElifDivi,	LDA	OpChoose	// elsif(OpChoose==Divi)
+		ADD	Divi		// {
+		SZA			//	Res = callfunc(DiviOp);
+		BUN	E1		//	if(Res = 0)
+ThenDivi,	BSA	DiviOp		//	{
+		LDA	Res		//		if(Rem!=0)
+		SZA			//		{
+		BUN	NoZero4		//			prints("=0");		
+		LDA	Rem		//			goto RemNoZero;
+		SZA			//		}
+		BUN	RemNoZero	//			
+		LDA	Y		//		
+		SZA			//		
+		BUN	yNoZero		//		if(Y==0)			// func "DiviOp" will catch this and print the error "Error div by 0". We will return back to Main from here. (cuz before we return here(to "WhatDWC" func)from the "DiviOp" function, we already print the error).
+		BUN	WhatDWC	I	//		}
+yNoZero,	LDA	Eflag		//			return 1;
+		SPA			//		}
+		BUN	Eflagok		//		if(Eflag>0)
+		BUN	WhatDWC	I	//		{
+Eflagok,	LDA	Equal		//			return 1;
+		BSA	PutC		//		}
+		LDA	ascii_Offset	//		print("=0");
+		BSA	PutC		//		reutrn 0;
+		BUN	WhatDWC	I	//	}
+						
+NoZero4,	LDA	FlagMY		//	else					// This flags will let us know if we should put Minus to the divison result (depends if we divide -X / -Y or X / -Y or -X / Y).
+		CMA			//	{
+		INC			//		if(-FlagMY+FlagMX=0)				
+		ADD	FlagMX		//		{
+		SZA			//			return (callfunc(Result(Res)));
+		BUN	incflagM	//		}
+		BUN	Go		//		else
+incflagM,	LDA	flagM		//		{
+		INC			//			++flagM;
+		STA	flagM		//			return (callfunc(Result(Res)));
+		BUN	Go		//		}
+					//	}
+Go,		BSA	Result		// else
+		BUN	WhatDWC I	// {
+					// print("Error op:")
+E1,		BSA	PutE		// return 1;
+		BUN	WhatDWC I	// }
+RemNoZero,	LDA	Equal		// RemNoZero....					// "goto RemNoZero" leading to this lines..
+		BSA	PutC		// 	
+		LDA	ascii_Offset	//		
+		BSA	PutC		//
+		LDA	Char(
+		BSA	PutC									
+		BSA	ResultRem								// if the result is zero and there is a remainder we will print it with a function call "ResultRem".
+		LDA	Char)									// just before calling the func we will print "=0"  then " ( " then "ResultRem" then " ) ".  example: 10/20 " =0(10) "
+		BSA	PutC
+		BUN	WhatDWC I
+		
+//__________________________________________________________
+
+
+// PlusOp				// We call this function from function "WhatDWC". This "PlusOp" function calculates the operation " + " between two signed integers, using "GetX&Y" calling to "GetSingedShort" function to recieve the two signed integers.
+
+PlusOp,		HEX	0		// 
+		BSA	GetX&Y		//
+		LDA	Eflag		// {
+		SPA			// 	return -1;
+		BUN	EPchecked	// }
+		BUN	PlusOp I	//	
+EPchecked,	LDA	Y		//
+		ADD	X		// Res = Y+X;
+		STA	Res		// return Res;
+		BUN	PlusOp I	//
+//__________________________________________________________ // Not making highlevel code cuz its similar to PlusOp
+
+
+// MinusOp				// We call this function from function "WhatDWC". This "MinusOp" function calculates the operation " - " between two signed integers, using "GetX&Y" calling to "GetSingedShort" function to recieve the two signed integers.
+
+MinusOp,	HEX	0
+		BSA	GetX&Y
+		LDA	Eflag
+		SPA
+		BUN	EMchecked
+		BUN	MinusOP I
+EMchecked,	LDA	Y
+		CMA	
+		INC
+		ADD	X
+		STA	Res		// Res = -Y+X
+		BUN	MinusOp I
+//__________________________________________________________
+
+
+// MultOp				// We call this function from function "WhatDWC". This "MultOp" function calculates the operation " * " between two signed integers, using "GetX&Y" calling to "GetSingedShort" function to recieve the two signed integers.
+
+MultOp,			HEX	0
+		CLA			
+		STA	Dcount			//Dcount = 0
+
+		BSA	GetX&Y
+		LDA	Eflag
+		SPA
+		BUN	EDMchecked
+		BUN	MultOp I
+EDMchecked,	LDA	Y
+		SNA			// if (Y<0)
+					// {
+		BUN	CheckMX
+		CMA	
+		INC	
+		STA	Y		// 	Y=-Y;
+		LDA	FlagMY		
+		INC	
+		STA	FlagMY		// 	++FlagMY; 				// This flag will let us know if we should put Minus to the divison result (depends if we divide -X / -Y or X / -Y). 
+		BUN	CheckMX		// }
+CheckMX, 	LDA	X		
+		SNA			// if (X<0)
+		BUN	LoopM		// {
+		CMA
+		INC			
+		STA	X		// 	X=-X;					 
+		LDA	FlagMX
+		INC			// 	++FlagMX;				
+		STA	FlagMX		// }						// This flag will let us know if we should put Minus to the divison result (depends if we divide -X / -Y or -X / Y).
+		BUN	LoopM
+	
+
+
+
+	
+			
+LoopM,  	LDA	Dcount			// LoopM/while
+		CMA
+		INC
+		ADD	Charint8
+		SPA				// if(Dcount < 8 binary digits)
+		BUN	EndM
+		LDA	X			// {
+		CIR				// 	E=shift_right(multiplier)
+		STA	X			// 
+		SZE				//	if(E==1)
+		BUN	ElseM			// 	{	
+		BUN	FiMu			//		MultResult=MultResult+multiplicand;	
+ElseM,		LDA	Y			//	}		
+		ADD	Res			// 	
+		STA	Res			//				
+FiMu,		LDA	Y			//	
+		CIL				//	Shift(multiplicand) 1 place to left;
+		STA	Y			//
+		ISZ	Dcount			//	++DigitCount
+		BUN	LoopM			// }
+EndM,		BUN	MultOp I		// return 0;
+//__________________________________________________________
+
+
+//DiviOp				// We call this function from function "WhatDWC". This "DiviOp" function calculates the operation " / " between two signed integers, using "GetX&Y" calling to "GetSingedShort" function to recieve the two signed integers.
+
+DiviOp,		HEX	0
+		BSA	GetX&Y
+		LDA	Eflag
+		SPA
+		BUN	EDchecked
+		BUN	DiviOp I
+EDchecked,	LDA	Y
+		SNA			// if (Y<0)
+					// {
+		BUN	CheckX
+		CMA	
+		INC	
+		STA	Y		// 	Y=-Y;
+		LDA	FlagMY		
+		INC	
+		STA	FlagMY		// 	++FlagMY; 				// This flag will let us know if we should put Minus to the divison result (depends if we divide -X / -Y or X / -Y). 
+		BUN	CheckX		// }
+CheckX, 	LDA	X		
+		SNA			// if (X<0)
+		BUN	checkdiv0	// {
+		CMA
+		INC			
+		STA	X		// 	X=-X;					 
+		LDA	FlagMX
+		INC			// 	++FlagMX;				
+		STA	FlagMX		// }						// This flag will let us know if we should put Minus to the divison result (depends if we divide -X / -Y or -X / Y).
+		BUN	checkdiv0
+
+checkdiv0,	LDA	Y		// if (Y==0)
+		SZA			// {
+		BUN	NoDiv0		//
+		BSA	PutEZ		// 	print("Error div by 0");		// as mantioned func "DiviOp" will catch this and print the error "Error div by 0".
+		BUN	DiviOp I	// 	return -1;
+NoDiv0,		CMA			// }
+		INC			//
+		STA	mY		// mY= -Y;
+		ADD	X		// Resu = mY+X;					
+		STA	Resu		// 				
+		LDA	count		// ++count;
+		INC
+		STA	count		
+LoopD,		LDA	Resu		// while (Resu>0) 				// a simple way, as we learned to devide - nothing special here. -_-
+		SPA			// {
+		BUN	Fdiv		// 	Resu = mY+Resu;			
+		LDA	mY		// 	++count;
+		ADD	Resu		// }
+		STA	Resu		//
+		LDA	count		//			
+		INC			//
+		STA	count		//			
+		BUN 	LoopD		//		
+Fdiv,		LDA	Resu		// if (Resu<0)
+		SNA			// {
+		BUN	End		// 	Rem = Y+Resu;
+		LDA	Y		//
+		ADD	Resu		//
+		STA	Rem		//
+		LDA	count		//	--count;
+		ADD	Minus1		// 
+		STA	Res		//	Res = count;
+		BUN	DiviOp I	//	return 0;
+End,		LDA	count		// }
+		STA	Res		// Res = count;
+		BUN	DiviOp I	// return 0;
+//__________________________________________________________
+
+
+// GetX&Y 				// Each one of the Opfunctions "PlusOp" , "MinusOp" , "MultOp" and "DiviOp" calls to GetX&Y.
+
+GetX&Y,		HEX	0		// print("1st:");
+		BSA	1st		// scanf("%d", &X);
+		BSA	GetSingedShort	// if (Eflag>0)					// For X if Eflag(Errorflag) will raise in function "GetSingedShort" we will know that the user entered wrong digit. And "GetSingedShort" already printed the error - "Error - please insert a vaild digit".
+		LDA	Eflag		// {
+		SPA			// 	return -1;
+		BUN	EP1checked	// }
+		BUN	GetX&Y I	//
+EP1checked,	LDA	Number		// print("2nd:");
+		STA	X		// scanf("%d", &Y);
+		BSA	2nd		// if (Eflag>0)					
+		BSA	GetSingedShort	// {						// For Y if Eflag(Errorflag) will raise in function "GetSingedShort" we will know that the user entered wrong digit. And "GetSingedShort" already printed the error - "Error - please insert a vaild digit"
+		LDA	Eflag		// 	return -1;
+		SPA			// }
+		BUN	EP2checked	//
+		BUN	GetX&Y I	// 
+EP2checked,	LDA	Number		// 
+		STA	Y		//
+		BUN	GetX&Y I
+//__________________________________________________________
+
+					// We call this function from "GetX&Y". We call it twice total, one time for X and the second for Y.
+// GetSingedShort			// Getting singed integer and making sure typos raisig the flags so the user will be able to make a quick new calculation without terminating the all app.
+					// The function also make sure that we are getting a valid digit.
+GetSingedShort,	HEX	0		
+HERE,		CLA
+		STA	FLAG		// FLAG = 0;						// Some of the comments here explains the assembly code and some explains the pseudo code, we mantion each comment what we wanted to explain.
+		STA	Number		// Number = 0;
+		BSA	GetC		// scanf("%d", &CC);
+		STA	CC		//							// First digit we let the user enter the first digit bitween 0-9 or the sign Minus(" - "). Anything else we print "Error - please insert a vaild digit".
+		ADD	Mbiggerange	// if (CC>Mbiggerange)					// Mbiggerange = -39HEX if we go above that we will not allow this char.
+		SPA			// {
+		BUN	LowerangeC	// 	goto Err;                                  	// "Err" will print printf("Error - please insert a valid digit"), and Eflag raise. We use "goto Err" in the pseudo code to save space it is always the same 3 lines of: ++Eflag; prints("Error - please insert a vaild digit"); return 1; 
+		BUN	Err		// }
+LowerangeC,	LDA	CC		// if (CC<checkM)					// checkM = -30HEX if the user put any sign that below this value we detect it and allowing it only if it is the sign " - " we are not alwaing " Enter " to first digit we want a Minus or 0-9 digit.
+		ADD	checkM		// {
+		SNA			// 	if (CC == "Minus")	
+		BUN	ElseG		// 	{						// "ElseG" - If the user enter the first digit and it is bitween 0-9 we skip this checks.
+		LDA	CC		//		FLAG = -1				// FLAG =-1 if the number is negative.
+		ADD	MinusO		// 		scanf("%d", &CC);			// MinusO - -2D if the user put the sign " - " we detect it and allowing it.
+		SZA			//		if (CC>Mbiggerange)			// Now the second digit(only if first digit was the sign - Minus), we only allow a digit bitween 0-9. Anything else we print "Error - please insert a vaild digit". OFC if the first digit is 0-9 we wont arrive here.
+		BUN	Err		//		{					
+ThenM,		LDA 	Minus1		//			printf("Error - please...");
+		STA 	FLAG		//			++Eflag;			// This comment reffer to pseudo code: as mantioned in "GetX&Y" function, if this flag(Eflag) raise we will know that the user entered wrong digit. And "GetSingedShort"(this function) prints the error - "Error - please insert a vaild digit".
+		BUN	LoopWG1		//			return 1;			// DO NOT mistake, Eflag raises when invalid digit enterd , FLAG = -1 when we get Minus for first digit to represent a negative number. Two different flags!!!!
+LoopWG1,	BSA	GetC		//		}
+		STA	CC		//		if (CC<checkM)				// checkM = -30HEX if the user put any sign that below this value we detect it and not allowing it.
+		ADD	Mbiggerange	//		{
+		SPA			//			printf("Error - please...");
+		BUN	Acheck1		//			++Eflag;
+		BUN	Err		//			return 1;
+Acheck1,	LDA	CC		//		}
+		ADD	checkM		//	}
+		SNA			// 	else goto Err;					// "Err" will print printf("Error - please insert a valid digit"), and Eflag raise. we do this line if we get a digit below the range and it is not Minus in the first digit.
+		BUN	FiM		// }
+		BUN	CheckIfBS		// else goto ElseG;				// "goto ElseG" - if the first digit was 0-9 so we skip checks... that means we are good to go with the while loop till "Enter".
+CheckIfBS,	LDA	CC
+		ADD	MBS
+		SZA
+		BUN	Err
+		BUN	HERE
+		
+
+
+LoopWG,		BSA	GetC		// scanf("%d", &CC);
+		STA	CC		// 							// This is the regular while loop till "Enter" but we only need to check "enter" and range 0-9. anything else we goto "Err".
+		ADD	Mbiggerange	// if (CC>Mbiggerange)					// Mbiggerange = -39HEX if we go above that we will not allow this char.
+		SPA			// {
+		BUN	Acheck		// 	printf("Error - please insert a valid digit");
+		BUN	Err		// 	++Eflag;					// As mantioned in "GetX&Y" function, if this flag(Eflag) raise we will know that the user entered wrong digit. And "GetSingedShort"(this function) prints the error - "Error - please insert a vaild digit".
+Acheck,		LDA	CC		// 	return 1;
+		ADD	checkM          // }
+		SNA			// if (CC<checkM)					// checkM = -30HEX if the user put any sign that below this value we detect it and allowing it only if it is the sign " - " or " Enter ".
+		BUN	FiM		// {
+		BUN	Entercheck	// 	if (CC != "enter")							
+Entercheck,	LDA	CC		//	{
+		ADD	MINUS_CR	// 		goto Err;					
+		SZA			// 	}
+		BUN	BSC		// 	if (CC == "enter")				// Checks if we are in range 0-9 or "enter" as long as we get char 0-9 we continue for the next digit, as soon as we see "enter" we are ending this loop, we got our full number.		
+		BUN	FiM			//	{
+BSC,		LDA	CC
+		ADD	MBS
+		SZA
+		BUN	Err
+		LDA	PrevNumb
+		STA	Number
+		SZA
+		BUN	LoopWG
+		LDA	FLAG
+		SZA
+		BUN 	NoFLAG0
+		BUN	HERE	
+NoFLAG0,	LDA	Sflag
+		INC
+		STA	Sflag
+		BUN	HERE
+FiM,		LDA 	CC		//		return 0;
+		ADD 	MINUS_CR	//	}			
+		SZA			// }							
+		BUN 	ElseG		//							
+ThenG,		BUN 	FiG		// 
+ElseG,		LDA 	Number		// 							// "ElseG" starts here. While loop to get digits till we get the enter from the user as we learned.
+		STA	PrevNumb
+		CLE			 
+		CIL			 
+		CIL			
+		CIL			 
+		ADD	Number		 
+		ADD	Number		 
+		ADD	CC		 	
+		ADD	checkM
+		STA	Number
+		BUN	LoopWG
+FiG,		LDA	FLAG
+		INC
+		SZA
+		BUN	FiE
+ThenE,		LDA	Number
+		CMA
+		INC
+		STA	Number
+		CLA
+		STA	FLAG
+		STA	Sflag
+FiE,		LDA	Sflag
+		SZA
+		BUN	ThenE
+		BUN	GetSingedShort I
+Err,		BSA	PutEC					// "Err" this line mantioned by "goto Err" in pseudo code or "BUN Err" assembly. PutEC prints the "Error - please insert a valid digit"
+		LDA	Eflag					// we print the error and we raise the Eflag as mantioned..
+		INC	
+		STA	Eflag
+		BUN	GetSingedShort I
+//__________________________________________________________
+
+					// We call this function from function "WhatDWC". 
+// Result				// This "Result" function - prints the result to the screen after completing the calculation. Getting help by function "Div".
+					// We can print the results of each and everyone of the calculations, that Opfunctions made, from this modular function. If we get a remainder from the "DiviOp" func, "Result" will call for "ResultRem" func to print the rmainder value inside the "()".
+Result,		HEX	0
+		LDA	Minus1		
+		STA	F_CHECK
+		LDA 	Equal									// pseudo code has no use here please follow the assembly code with the comments.
+		BSA 	PutC
+		
+		LDA	FlagM
+		SPA			// if (FlagM > 0) print " - "				// This flag rasing if need in function "WhatDWC" its about the divison with minus as mantioned. if we made a divison between X and Y but one of them is negative we will catch this. if both negative flag will no raise.
+		BUN	flagcheck
+		LDA	Minus									// We will never print " - "(minus) twice cuz the flag will raise ONLY when we divide by one negative, X or Y. 
+		BSA	PutC									// And if we do divide when one of them is negative, our algoritem(in "DiviOp") starts by making them both positive and then turning Y to -Y for substraction from X (read next line)
+												// BUT Res will ALWAYS come here as positive in this cases and we goto "Fi" after we print only one minus. 
+flagcheck,	LDA 	Res									// Checking for the other options if Res negative (NOT causes by any minus divisions).
+		SNA
+		BUN 	Fi
+Then2, 		CMA			// if (Res<0)
+		INC			// 	print("-")
+		STA 	Res		// 							// We print minus but we make Res positive again to get the right numbers after we print " - ".
+		LDA 	Minus
+		BSA 	PutC
+		BUN 	Fi
+Fi,		LDA 	Pow10Ptr	
+		STA 	Ptr
+		LDA 	It_count
+		STA 	counter		
+LoopW,		LDA 	counter									// LDA after STA cuz "LoopW" acting as a lable for a while loop, so we want to make sure we are checking the right value.
+		SNA
+		BUN 	ElseW									// Simple loop as we learned and as we already made in HW 11 ex 6.
+ThenW,		BUN 	FiW
+ElseW,		BSA 	Div
+		LDA 	F_CHECK
+		SZA
+		BUN 	ElseCheck
+ThenCheck,	BUN 	FiCheck									
+ElseCheck,	LDA 	digit
+		SZA
+		BUN 	ElseC
+ThenC,		BUN 	Skip
+ElseC,		CLA
+		STA 	F_CHECK
+FiCheck,	LDA 	digit
+		ADD 	ascii_Offset
+		BSA 	PutC
+Skip,		LDA 	counter									// Checking if need to print 0 or it's a preliminary zero.
+		ADD 	Minus1
+		STA 	counter
+		ISZ 	Ptr
+		BUN 	LoopW
+FiW,		LDA	Rem
+		SZA	
+		BUN	YRem									// Checks if there is a remainder after the division.
+		BUN	Result I
+YRem,		LDA	Char(
+		BSA	PutC
+		BSA	ResultRem								// If there is a remainder we will print it with very very similar func call "ResultRem".
+		LDA	Char)									// Just before calling the func we will print the result without remainder then " ( " then "ResultRem" then " ) ".  example: 54/28 " =1(26) "
+		BSA	PutC
+		BUN	Result I
+//__________________________________________________________
+
+
+// Div					// We call this function from function "Result". This "Div" function helps "Result" function to print the result of a calculation by seperating the digits.
+
+Div,		HEX	0
+		LDA	Ptr I
+		STA 	Divisor
+		STA 	mDivisor 	// mDivisor = - Divisor;
+		CLA
+		STA 	Digit		// Digit =0;
+Loop,		LDA	mDivisor	// WHILE (Num – Divisor >=0)
+		ADD	Res
+		SNA
+		BUN	Con
+		BUN	Continue
+Con,		LDA	mDivisor	// DO
+		ADD	Res
+		STA	Res		// Num = Num – Divisor;
+		ISZ	digit		// digit++;
+		BUN	Loop 		// OD;
+Continue,	LDA	Res
+		BUN	Div I
+//__________________________________________________________
+
+
+// ResultRem				// We call this function from function "Result". This "ResultRem" function prints the result of the remainder after completing a divison calculation inside the "()" . Getting help by function "DivRem". 
+
+ResultRem,	HEX	0
+		
+FiRem,		LDA 	Pow10Ptr
+		STA 	Ptr
+		LDA 	It_count
+		STA 	counter
+LoopWRem,	LDA 	counter
+		SNA
+		BUN 	ElseWRem
+ThenWRem,	BUN 	FiWRem
+ElseWRem,	BSA 	DivRem
+		LDA 	F_CHECKrem
+		SZA
+		BUN 	ElseCheckRem
+ThenCheckRem,	BUN 	FiCheckRem
+ElseCheckRem,	LDA 	digit
+		SZA
+		BUN 	ElseCRem
+ThenCRem,	BUN 	SkipRem
+ElseCRem,	CLA
+		STA 	F_CHECKrem
+FiCheckRem,	LDA 	digit
+		ADD 	ascii_Offset
+		BSA 	PutC
+SkipRem,	LDA 	counter
+		ADD 	Minus1
+		STA 	counter
+		ISZ 	Ptr
+		BUN 	LoopWRem
+FiWRem,		BUN	ResultRem I
+//__________________________________________________________
+
+
+// DivRem				// We call this function from function "ResultRem". This "DivRem" function helps "ResultRem" function to print the remainder after completing a divison calculation by seperating the remainder digits.
+
+DivRem,		HEX	0
+		LDA	Ptr I
+		STA 	Divisor
+		STA 	mDivisor 	// mDivisor = - Divisor;
+		CLA
+		STA 	Digit		// Digit =0;
+LoopRem,	LDA	mDivisor	// WHILE (Num – Divisor >=0)
+		ADD	Rem
+		SNA
+		BUN	ConRem
+		BUN	ContinueRem
+ConRem,		LDA	mDivisor	// DO
+		ADD	Rem
+		STA	Rem		// Num = Num – Divisor;
+		ISZ	digit		// digit++;
+		BUN	LoopRem		// OD;
+ContinueRem,	LDA	Rem
+		BUN	DivRem I
+//__________________________________________________________
+
+
+
